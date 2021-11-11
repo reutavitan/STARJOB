@@ -14,7 +14,7 @@ int main()
 	else
 		letter = letter;
 
-	printf("The new letter is : %c . \n ", letter); // printing //
+	printf("The n : %c . \n ", letter); // printing //
 
 	return 0;
 }
