@@ -101,8 +101,10 @@ void EmployerMenu()
 			switch (choice)
 			{
 			case 1:
+				EmployerProfile(employer[i]);
 				break;
 			case 2:
+
 				break;
 			case 3:
 				break;
