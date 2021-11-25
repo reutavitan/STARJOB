@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
@@ -49,7 +50,9 @@ typedef struct {
 	char requirements[SIZE];
 }Job;
 
-
+void deleteJob(Job* job);
+void menuJob(Job* job);
+void editJob(Job* job);
 
 void viewAllJobOfEmployer(Employer* employer, Job** job, int size)
 {
@@ -74,7 +77,7 @@ void viewAllJobOfEmployer(Employer* employer, Job** job, int size)
 
 
 }
-int menuJob(Job* job)
+void menuJob(Job* job)
 {
 	int choice;
 	do
@@ -94,7 +97,7 @@ int menuJob(Job* job)
 			viewListOfCandidatesForThePosition();//לשאול איך אנחנו מציגים רשימת מועמדים ועוברים לפרופיל
 			break;
 		case 0:
-			return 0;
+			return;
 
 		default:
 			printf("Error,try again.\n");
@@ -130,7 +133,7 @@ void editJob(Job* job)
 		case 1:
 			printf("Enter job name:\n");
 			getchar();
-			gets_s(jobName, N);
+			gets_s(jobName, SIZE);
 			//בדיקת תקינות קלט
 			strcpy(job->name, jobName);
 
@@ -138,7 +141,7 @@ void editJob(Job* job)
 		case 2:
 			printf("Enter Company name:\n");
 			getchar();
-			gets_s(companyName, N);
+			gets_s(companyName, SIZE);
 			//בדיקת תקינות קלט
 			strcpy(job->companyName, companyName);
 
@@ -154,14 +157,14 @@ void editJob(Job* job)
 		case 5:
 			printf("Enter a description of job :\n");
 			getchar();
-			gets_s(jobDescription, M);
+			gets_s(jobDescription, SIZE2);
 			//בדיקת תקינות קלט
 			strcpy(job->description, jobDescription);
 			break;
 		case 6:
 			printf("Enter the job requirements :\n");
 			getchar();
-			gets_s(requirements, M);
+			gets_s(requirements, SIZE2);
 			//בדיקת תקינות קלט
 			strcpy(job->requirements, requirements);
 			break;
@@ -190,16 +193,3 @@ void deleteJob(Job* job)
 		printf("The job was deleted.\n");
 	}
 }
-void printJob(Job* job)
-{
-	//הדפסה של משתנה בולאיני??
-	printf("The name of job:\n%s\nCompany Name:\n%s\nDescription of the company:\n%s\nRequirements:\n%s\nArea:\n%", job->name, job->companyName, job->description, job->requirements, job->area, job->profession, job->scope, job->id);
-}
-int main() {
-	Candidate** candidateDataBase = (Candidate**)malloc(sizeof(Candidate*) * SIZE);
-	Employer** employerDataBase = (Employer**)malloc(sizeof(Employer*) * SIZE);
-	Job** jobDataBase = (Job**)malloc(sizeof(Job*) * SIZE);
-	Bool fillDefaultCandidateDataBase(Candidate * *candidateDataBase); {
-
-	};
-};
