@@ -34,7 +34,7 @@ struct Employer
 	long phoneNumber;
 	char companyName[N];
 	char companyDescription[M];
-	Job* e_jobarray; //מערך המשרות שהמעסיק פרסם
+	Job* employer_jobarray; //מערך המשרות שהמעסיק פרסם
 
 };
 struct Candidate
@@ -71,7 +71,7 @@ void present_candidate_history_4() //הדפסת מערך המשרות שהמועמד הגיש אליהן מועמדו
 	* ששמו הוא מספר המשרה.
 	*/
 	int i = 0;
-	while (c_jobarray[i] != NULL)
+	while (c_jobarray[i] != NULL)//להוסיף לתנאי שהסטטוס משרה צריך להיות זמין
 	{
 		print_current_jobs(&c_jobarray[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
 		i++;
@@ -154,7 +154,7 @@ void apply_5_1_1()
 void printalljobs() //משתמשת בה בדרישה מס 5.1
 {
 	int i = 0;
-	while (jobarray[i] != NULL) // מערך של מצביעים- מערך כל המשרות הקיימות
+	while (jobarray[i] != NULL || jobarray[i].status) // מערך של מצביעים- מערך כל המשרות הקיימות
 	{
 		print_current_jobs(&jobarray[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
 		i++;
@@ -165,7 +165,7 @@ void filterjobs_5_2()
 {
 	int choice;
 
-	printf("pls select one of 4 filtering options  :\n 1. area \n 2. - proffesional \n 3. - job scope \n 4. - job type\n");
+	printf("pls select one of 4 filtering options  :\n 1. area \n 2. proffesional \n 3. job scope \n 4. job exeperience\n");
 	scanf("%d", &choice);
 	switch (choice)
 	{
@@ -173,7 +173,7 @@ void filterjobs_5_2()
 		filterbyrea_5_2_2();
 		break;
 	case 2:
-		filterjobsbyprofession_5_2_3;
+		filterjobsbyprofession_5_2_3();
 		break;
 	case 3:
 
