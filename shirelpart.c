@@ -1,82 +1,135 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <stdlib.h>
+#include <time.h>
 #include <string.h>
+#include<malloc.h>
+#include <stdlib.h>
+#include <time.h>
 
-#define N 10
-#define M 30
+#define SIZE 20
+#define SIZE2 500 //for free text
 
-struct Date
+sizeEmployer = 0;
+sizeCandidate = 0;
+sizeJob = 0;
+
+//typedef enum { employer = 0, candidate = 1 }Gender;
+typedef enum { FALSE = 0, TRUE = 1 }Bool;
+
+typedef struct {
+	int day, month, year;
+}Date;
+
+typedef struct {
+	char id[SIZE2];
+	char password[SIZE2];
+	char fullName[SIZE2];
+	char phoneNumber[SIZE2];
+	char education[SIZE2];
+	char workExperience[SIZE2];
+	char gender[SIZE2];
+	char CV[SIZE2];//קורות חיים
+}Candidate;
+
+typedef struct {
+	char id[SIZE2];
+	char password[SIZE2];
+	char fullName[SIZE2];
+	char phoneNumber[SIZE2];
+	char companyName[SIZE2];
+	char description[SIZE2];
+	char gender[SIZE2];
+}Employer;
+
+typedef enum { Fulltime = 1, Parttime = 2, Temporaryjob = 3, Motherjob = 4 }Scope;
+typedef enum { North = 1, South = 2, Central = 3, Jerusalem = 4 }Area;
+typedef enum { Sales = 1, AccountingAndFinance = 2, Logistics = 3, EducationandTraining = 4, HiTech = 5, Securing = 6, Restaurants = 7 }Profession;
+
+typedef struct {
+	char id[SIZE];
+	char companyName[SIZE];
+	char name[SIZE];
+	Scope  scope;//קליטה של מספר לקובץ
+	Area  area;
+	Profession profession;
+	Experience experience;
+	char description[SIZE];
+	char requirements[SIZE];
+	bool status;//0-avalabe 1- ananabala
+	char candidate1[SIZE2];
+	char candidate2[SIZE2];
+	char candidate3[SIZE2];
+}Job;
+
+
+const char* getArea(enum Area area) //פונקציה להכנסת מס וקבלת מחרוזת המייצגת את האופציה מתוך הenum
 {
-	int day;
-	int month;
-	int year;
-};
-
-struct Job
-{
-	long idnum_of_job;
-	char jobName[N];
-	char companyName[N];
-	enum scope scope;
-	enum positionArea area;
-	char jobDescription[M];
-	char requirements[M];
-	enum profession profession;
-	int numofcandidate;
-
-};
-
-struct Employer
-{
-	char name[N];
-	//Date birthday;
-	long id;
-	long phoneNumber;
-	char companyName[N];
-	char companyDescription[M];
-	Job* employer_jobarray; //מערך המשרות שהמעסיק פרסם
-
-};
-struct Candidate
-{
-	char name[N];
-	//Date birthday;
-	long id;
-	long phoneNumber;
-	char education[M];
-	char workexperience[M];
-	Job* c_jobarray; //מערך המשרות שהמועמד הגיש אליהם מועמדות
-	//int numofjobs=0;
-
-};
-
-int numofalljobs = 0; //האם כאן זה המקום שכדאי להגדיר את מס כל המשרות?
-
-void print_current_jobs(Job* job) //הדפסת משרה נוכחית 
-{
-	printf(" Job name : %s \n Company name: %s \n Scope: %d \n Position area : %d \n Job description :%s \n Requirements : %s \n Proffesion: %d", job.jobName, job.companyName, job.scope, job.area, job.jobDescription, job.requirements, job.profession);
+	switch (area)
+	{
+	case 1: return "Fulltime";
+	case 2: return "Parttime";
+	case 3: return "Temporaryjob";
+	case 4: return "Motherjob";
+	
+	}
 }
 
-void present_candidate_history_4() //הדפסת מערך המשרות שהמועמד הגיש אליהן מועמדות
+const char* getScope(enum Scope scope) //פונקציה להכנסת מס וקבלת מחרוזת המייצגת את האופציה מתוך הenum
 {
-	/*הוספת משרה לקובץ והדפסת המשרות עבור אותו מועמד:
-	* בכל פעם שירשם מועמד חדש למערכת , המערכת תיצור בעבורו קובץ חדש , את שם הקובץ תשמור בתור מחרוזת .
-	* 1.המערכת תדפיס את כל פרטי הפרופיל של המועמד אל הקובץ , ותרד שורה .
-	* 2.בכל פעם שהמועמד יגיש מועמדות למשרה , המערכת תדפיס לקובץ של אותו מועמד את מספר המשרה ,ותרד שורה.
-	* בנוסף תקדם את המשתנה נאםאוףגובס באחד.
-	* 3.כאשר המועמד יבחר לצפות במשרות אליהן הגיש מועמדות , המערכת תסרוק מהקובץ -החל מהשורה בה כתובה המשרה הראשונה
-	* שזה שורה אחת מתחת לשורות בהן כתובים פרטי המשתמש  אל תוך מערך.
-	* גודל המערך יהיה נאםאוףגובס.
-	* 4.לאחר שהתוכנית קיבלה את המערך עם מספרי המשרות - היא תדפיס את המשרה שמוצבעת על ידי מצביע
-	* ששמו הוא מספר המשרה.
-	*/
-	int i = 0;
-	while (c_jobarray[i] != NULL)//להוסיף לתנאי שהסטטוס משרה צריך להיות זמין
+	switch (scope)
 	{
-		print_current_jobs(&c_jobarray[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
+	case 1: return "North";
+	case 2: return "South";
+	case 3: return "Central";
+	case 4: return "Jerusalem";
+
+	}
+}
+
+const char* getProfession(enum Profession profession) //פונקציה להכנסת מס וקבלת מחרוזת המייצגת את האופציה מתוך הenum
+{
+	switch (profession)
+	{
+	case 1: return "Sales";
+	case 2: return "AccountingAndFinance";
+	case 3: return "Logistics";
+	case 4: return "EducationandTraining ";
+	case 5: return "HiTech";
+	case 6: return "Securing";
+	case 7: return "Restaurants";
+
+	}
+}
+const char* getExperience(enum Experience experience) //פונקציה להכנסת מס וקבלת מחרוזת המייצגת את האופציה מתוך הenum
+{
+	switch (experience)
+	{
+	case 1: return "with_experience";
+	case 2: return "without_experience";
+	
+	}
+}
+
+
+void print_current_jobs(Job* Job) //הדפסת משרה נוכחית 
+{
+	printf(" Job name : %s \n Company name: %s \n Scope: %s \n  area : %s \n Job description :%s \n Requirements : %s \n Proffesion: %s \n candidate 1: ", Job.name, Job.companyName, getScope(thescope), getArea(thearea), Job.description, Job.requirements, getProfession(theproffesion));
+}
+
+void present_candidate_history_4(Candidate candidate) //הדפסת המשרות שהמועמד הגיש אליהן מועמדות
+{
+	int i = 0;
+	while (job[i] != NULL)
+	{
+		if (job[i].status == 0)
+		{
+			if(strcmp(job[i].candidate1,candidate.id)==0|| strcmp(job[i].candidate2 ,mcandidate.id)==0||strcmp(job[i].candidate3,candidate.id)==0)
+			print_current_jobs(&job[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
+		}
 		i++;
 	}
 }
+
 void viewjobs_5()//פונקציה המציגה למשתמש את כל המשרות הקיימות - על פי בחירה
 {
 	int choice;
@@ -88,7 +141,7 @@ void viewjobs_5()//פונקציה המציגה למשתמש את כל המשרות הקיימות - על פי בחירה
 		switch (choice) {
 
 		case 1://5.1 // פונקציה המדפיסה את כל המשרות הקיימות ולאחריה תפריט המאפשר בחירה נוספת
-			printalljobs(); //קריאה לפונ המדפיסה את כל המשרות
+			viewallthejobs_5_1(); //קריאה לפונ המדפיסה את כל המשרות
 			break;
 		case 2://5.2 + 5.2.1
 			filterjobs_5_2();
@@ -106,9 +159,7 @@ void viewjobs_5()//פונקציה המציגה למשתמש את כל המשרות הקיימות - על פי בחירה
 void viewallthejobs_5_1()
 {
 	int choice;
-	long jobid;//מס מזהה של משרה 
-	int j = numofalljobs;
-	do
+		do
 	{
 
 		printf("pls select one of 3 options :\n 1. view all the jobs without filtering \n 2. apply \n 0. Back to the previous menu-view jobs \n");
@@ -131,32 +182,51 @@ void viewallthejobs_5_1()
 
 	} while (choice != 0);
 }
-void apply_5_1_1()
+void apply_5_1_1(Candidate candidate)
 {
-	long jobid;//מס מזהה של משרה
+	char jobid[SIZE];//מס מזהה של משרה 
+	int i = 0;
 
-	printf("Type in the ID number of the position to which you want to apply.");
-	scanf("%ld", &jobid);
+	printf("Type in the ID number of the job to which you want to apply.");
+	scanf("%s", jobid);
 
-	for (int i = 0; i < j; i++)
+	while (job[i] != NULL)
 	{
-		if (jobarray[i].idnum_of_job == jobid)
+		if ((strcmp(job[i].id , jobid)==0) && (job[i].status == 0))
 		{
-			numofalljobs++;
-			/*קריאה לפונקציה המקבלת את המצביע למשרה , הפונקציה תדפיס את נתוני המשרה לתוך הקובץ של המשתמש
-			כמו כן תדפיס לקובץ של אותה המשרה את תעודת הזהות של המשתמש
-			*/
+			if (strcmp(job[i].candidate1 , '-')!=0)
+			{
+				job[i].candidate1 = candidate.id
+					printf("the apply seccess !");
+			}
+			else if (strcmp(job[i].candidate2, '-') != 0)
+			{
+				job[i].candidate2 = candidate.id
+				printf("the apply seccess !");
+			}
+			else if (strcmp(job[i].candidate3, '-')
+			{
+				job[i].candidate3 = candidate.id
+				printf("the apply seccess !");
+			}
+			else
+				printf("Oops! The max number of candidates who can apply for each job is 3.")
 		}
+		++i;
+		else if(job[i]==NULL)
+		printf("the job is unavailable")
 	}
-	printf("the apply seccess !");
+	
 }
 
 void printalljobs() //משתמשת בה בדרישה מס 5.1
 {
 	int i = 0;
-	while (jobarray[i] != NULL || jobarray[i].status) // מערך של מצביעים- מערך כל המשרות הקיימות
+	while (job[i] != NULL)
 	{
-		print_current_jobs(&jobarray[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
+		if(job[i].status == 0) // מערך של מצביעים- מערך כל המשרות הקיימות
+		print_current_jobs(&job[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
+
 		i++;
 	}
 }
@@ -170,16 +240,16 @@ void filterjobs_5_2()
 	switch (choice)
 	{
 	case 1:
-		filterbyrea_5_2_2();
+		filter_by_area_5_2_2();
 		break;
 	case 2:
-		filterjobsbyprofession_5_2_3();
+		filter_jobs_by_profession_5_2_3();
 		break;
 	case 3:
-
+		filter_jobs_by_scope_5_2_4();
 		break;
 	case 4:
-
+		filter_by_job_exeperience_5_2_5();
 		break;
 	default:
 		printf("invalid choice , try again!");
@@ -204,23 +274,38 @@ void menuforfilterjobs_5_2_1()
 		printf("invalid choice , try again!");
 	}
 }
-void printbysomefilter(char filte[], char filtername[])//פונקציה שמדפיסה משרות לפי מאפייני סינון 
+void printbysomefilter(char filte[], char filtername[])//פונקציה שמדפיסה משרות לפי מאפייני סינון //לתקן
 {
-	for (int i = 0; i < numofalljobs; i++)
+	int i = 0;
+	while(job[i]!=NULL)
 	{
-		if (strcmp(jobarray[i].filter, filtername) == 0)
-			print_current_jobs(&jobarray[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
+		if (strcmp(job[i].filter, filtername) == 0)
+			print_current_jobs(&job[i]); //שליחת הכתובת של המצביע , הקיים בתא זה במערך
+
+		++i
+			if(job[i]==NULL)
+				printf("there is no job by this filter")
 	}
 }
 
-void filterbyrea_5_2_2() //סינון לפי אזור
+void filter_by_area_5_2_2() //סינון לפי אזור
 {
 	int choice;
 	char filter[] = "area"; //האם בסדר שלא רשמתי את אורך המחרוזת בתוך הסוגריים
-	char namefilter[M];
-	printf("pls select one of 4 optionals area:\n 1. North\n 2. South\n 3.Central\n 4.Jerusalem\n");
-	scanf("%d", &choice);
-	switch (choice)
+	//char namefilter[M];
+
+		printf("pls select one of 4 optionals area:\n 1. North\n 2. South\n 3.Central\n 4.Jerusalem\n");
+		scanf("%d", &choice);
+
+		while (choice < 1 || choice>4)
+		{
+			printf("invalid choice,try again");
+			scanf("%d", &choice);
+		}
+
+	printbysomefilter(filter, getArea(choice));
+	
+	/*switch (choice)
 	{
 	case 1:
 		strcpy(namefilter, "North");
@@ -240,51 +325,58 @@ void filterbyrea_5_2_2() //סינון לפי אזור
 		break;
 	default:
 		printf("invalid choice , try again!");
-	}
+	}*/
 }
 
 
-void filterjobsbyprofession_5_2_3()
+void filter_jobs_by_profession_5_2_3()
 {
 	int choice;
 	char filter[] = "proffesion"; //האם בסדר שלא רשמתי את אורך המחרוזת בתוך הסוגריים
-	char namefilter[M] = "";
+
 	printf("pls select one of 7 optionals proffesion:\n 1. Sales \n 2.Accounting and Finance \n 3.Logistics \n 4.Education and training \n 5.HiTech \n 6.Securing \n7. Restaurants\n");
 	scanf("%d", &choice);
 
-	switch (choice)
+	while (choice < 1 || choice>7)
 	{
-	case 1:
-		strcpy(namefilter, "Sales");
-		printbysomefilter(filter, namefilter);
-		break;
-	case 2:
-		strcpy(namefilter, "Accounting and Finance");
-		printbysomefilter(filter, namefilter);
-		break;
-	case 3:
-		strcpy(namefilter, "Logistics");
-		printbysomefilter(filter, namefilter);
-		break;
-	case 4:
-		strcpy(namefilter, "Education and training");
-		printbysomefilter(filter, namefilter);
-		break;
-	case 5:
-		strcpy(namefilter, "HiTech");
-		printbysomefilter(filter, namefilter);
-		break;
-	case 6:
-		strcpy(namefilter, "Securing");
-		printbysomefilter(filter, namefilter);
-		break;
-	case 7:
-		strcpy(namefilter, "Restaurants");
-		printbysomefilter(filter, namefilter);
-		break;
-	default:
-		printf("invalid choice , try again!");
+		printf("invalid choice,try again");
+		scanf("%d", &choice);
 	}
+
+	printbysomefilter(filter, getProfession(choice));
+
+}
+
+void filter_jobs_by_scope_5_2_4()
+{
+	int choice;
+	char filter[] = "scope"; 
+
+	printf("pls select one of 4 optionals scope:\n 1. Fulltime \n 2. Parttime \n 3. Temporaryjob \n 4. Motherjob \n");
+
+	while (choice < 1 || choice>4)
+	{
+		printf("invalid choice,try again");
+		scanf("%d", &choice);
+	}
+
+	printbysomefilter(filter, getScope(choice));
+}
+
+void filter_by_job_experience_5_2_5()
+{
+	int choice;
+	char filter[] = "exprience";
+
+	printf("pls select one of 2 optionals experience:\n 1. with_experience \n 2. without_experience \n ");
+
+	while (choice < 1 || choice>2)
+	{
+		printf("invalid choice,try again");
+		scanf("%d", &choice);
+	}
+
+	printbysomefilter(filter, getExperience(choice));
 }
 
 

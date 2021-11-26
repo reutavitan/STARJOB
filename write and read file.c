@@ -37,6 +37,7 @@ typedef struct {
 typedef enum { Fulltime = 1, Parttime = 2, Temporaryjob = 3, Motherjob = 4 }Scope;
 typedef enum { North = 1, South = 2, Central = 3, Jerusalem = 4 }Area;
 typedef enum { Sales = 1, AccountingAndFinance = 2, Logistics = 3, EducationandTraining = 4, HiTech = 5, Securing = 6, Restaurants = 7 }Profession;
+typedef enum { With_experience = 1, Without_experience = 2}Experience; //היה חסר אז הוספתי-שיראל
 typedef struct {
 	char id[SIZE];
 	char companyName[SIZE];
@@ -44,6 +45,7 @@ typedef struct {
 	Scope  scope;//קליטה של מספר לקובץ
 	Area  area;
 	Profession profession;
+	Experience experience; //היה חסר אז הוספתי
 	char description[SIZE];
 	char requirements[SIZE];
 	bool status;//0-avalabe 1- ananabala

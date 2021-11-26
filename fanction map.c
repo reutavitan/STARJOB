@@ -50,8 +50,7 @@ void menu_for_edit_c_profile(); //תפריט עריכת פרופיל מועמד //reut
 
 void menu_for_edit_e_profile();//תפריט עריכת פרופיל מעסיק //adi
 
-void print_applied_jobs_history(Candidate.id);//מחפשת בין כל המבנים של המשרות האם קיים שדה בשם candidate שערכו הוא תעודת הזהות של המועמד// shirel - adi needs to help me
-
+void present_candidate_history_4(Candidate candidate);//מחפשת בין כל המבנים של המשרות האם קיים שדה בשם candidate שערכו הוא תעודת הזהות של המועמד// shirel 
 void printalljobs(); //shirel
 
 void apply();//shirel
@@ -60,13 +59,13 @@ void filterjobs_5_2();//shirel
 
 void menuforfilterjobs_5_2_1();//shirel
 
-void filterbyrea_5_2_2();//shirel
+void filter_by_area_5_2_2();//shirel
 
-void filter_jobs_byprofession_5_2_3();//shirel
+void filter_jobs_by_profession_5_2_3();//shirel
 
-void filter_jobs_by_scope(); //חסרה לי - שיראל//shirel
+void filter_jobs_by_scope_5_2_4(); //shirel
 
-void filter_by_job_exeperience();//חסרה לי-שיראל//shirel
+void filter_by_job_experience_5_2_5();//shirel
 
 void printemployerjobs();//adi
 
