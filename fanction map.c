@@ -18,9 +18,9 @@ flag fulname_input_validity(char fulname[]); //tair
 
 flag phonenum_input_validity(char phonenum[]); //reut
 
-flag education_input_validity(char education[]);//reut
+flag education_input_validity(char education[]);//reut V
 
-flag exeperience_input_validity(char exeperience[]); //reut
+flag exeperience_input_validity(char exeperience[]); //reut V
 
 flag companyname_input_validity(char companyname[]); //adi ?? if not so tair
 
@@ -38,17 +38,17 @@ void new_user_menu()//tair
 
 void exist_user_menu()//tair
 
-void main_candidate_menu(); //תפריט דף הבית מועמד //reut
+void main_candidate_menu(); //תפריט דף הבית מועמד //reut  V
 
 void main_employer_menu(); //תפריט דף הבית מעסיק //adi
 
-void print_candidate_profile(Candidate.id); //שולחים לפונ זו את המצביע במערך לסטרקט //reut
+void candidate_profile(Candidate* candidate); //reut V
 
-void print_employer_profile(Employer); //adi
+void employer_profile(Employer* employer);//adi
 
-void menu_for_edit_c_profile(); //תפריט עריכת פרופיל מועמד //reut
+void menu_edit_c_profile(); //תפריט עריכת פרופיל מועמד //reut V
 
-void menu_for_edit_e_profile();//תפריט עריכת פרופיל מעסיק //adi
+void menu_edit_e_profile();//תפריט עריכת פרופיל מעסיק //adi
 
 void present_candidate_history_4(Candidate candidate);//מחפשת בין כל המבנים של המשרות האם קיים שדה בשם candidate שערכו הוא תעודת הזהות של המועמד// shirel 
 void printalljobs(); //shirel
