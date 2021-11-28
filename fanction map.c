@@ -10,7 +10,7 @@
 */
 enum = { true = 0,false = 1 }flag;
 
-flag id_input_validity(char id[]); //tair
+flag id_input_validity(char id[]); //tair V
 
 flag passpword_input_validity(char password[]); //tair
 
