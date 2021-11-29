@@ -16,7 +16,7 @@ flag passpword_input_validity(char password[]); //tair V
 
 flag fulname_input_validity(char fulname[]); //tair V
 
-flag phonenum_input_validity(char phonenum[]); //reut
+flag phonenum_input_validity(char phonenum[]); //reut V
 
 flag education_input_validity(char education[]);//reut V
 
@@ -71,9 +71,9 @@ void printemployerjobs();//adi
 
 void print_current_jobs(&jobarray[i]); //הדפסת משרה אחת//הפרמטר הוא הכתובת של המשרה הנוכחית , מתוך מערך כל המשרות//shirel
 
-void edit_job_menu();//adi ?? if not so reut
+void edit_job_menu();//adi ?? if not so reut 
 
-void delete_job();// reut need to do
+void delete_job();// reut need to do V
 
 void viewing_candidate_profile();//הדפסת פרופיל מועמד -קוראת לפונקצית הדפסת פרופיל( שורה 26)  // reut
 
