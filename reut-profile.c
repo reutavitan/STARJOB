@@ -6,9 +6,13 @@
 #include <stdlib.h>
 #include <time.h>
 enum = { true = 0,false = 1 }flag;
-flag phonenum_input_validity(int phonenum) 
+flag phonenum_input_validity(char* phonenum)
 {
-
+	if (strlen(phonenum)==10|| phonenum[0]==0)
+	{
+		return 0;
+	}
+	return 1;
 }
 flag education_input_validity(char* education)
 {
@@ -41,13 +45,13 @@ void main_candidate_menu()
 			candidate_profile(candidate);
 			break;
 		case 2:
-			//היסטוריה
+			present_candidate_history_4(c);
 			break;
 		case 3:
-			//משרות
+			printalljobs();
 			break;
 		case 4:
-			//יציאה
+			logingout_5_4();
 			break;
 		 default:
 			printf("Error,try again.\n");
@@ -62,7 +66,7 @@ void candidate_profile(Candidate* candidate)
 	do
 	{
 		 
-		printf("%s\n%ld\n%ld\n%s\n%s\n%s\n", candidate->name,   candidate->id ,candidate->phoneNumber, candidate->email, candidate->education, candidate->workexperience);//חסר הדפסת תאריך לידה
+		printf("%s\n%s\n%s\n%s\n%s\n%s\n", candidate->name,   candidate->id ,candidate->phoneNumber,/* candidate->email,*/ candidate->education, candidate->workexperience);//חסר הדפסת תאריך לידה
 		printf(" To Edit Profile press '1' \n  To Back to the previous menu press '2' \n ");
 		scanf("%d", &choice);
 		switch (choice)
@@ -112,7 +116,7 @@ void menu_edit_c_profile(Candidate* c)
 			   gets_s(name, N);
 		    }
 			printf("To update press '0' To not change press '1'\n");
-			scanf("%s",  flag);
+			scanf("%d",  flag);
 			if (flag == 0)
 			{
 		      strcpy(c->name, name);
@@ -125,20 +129,20 @@ void menu_edit_c_profile(Candidate* c)
 			}
 		case 2:
 			printf("Enter your email address:\n");
-			getchar();
-			gets_s(email, N);
+			/*getchar();
+			gets_s(email, N);*/
 			while (//תקינות  איימיל =0)
 				{
 				   printf("The email address is incorrect\n");
 				   printf("Enter your email address:\n");
-				   getchar();
-				   gets_s(email, N);
+				  /* getchar();
+				   gets_s(email, N);*/
 				}
 			printf("To update press '0' To not change press '1'\n");
-			scanf("%s", flag);
+			scanf("%d", flag);
 			if (flag == 0)
 			{
-				strcpy(c->email, email);
+				/*strcpy(c->email, email);*/
 				printf("The email has been updated\n");
 				break;
 			}
@@ -148,16 +152,18 @@ void menu_edit_c_profile(Candidate* c)
 			}
 		case 3:
 			printf("Enter your phone number:\n");
-			scanf("%ld", &phoneNumber);
-			while (//תקינות פלאפון =0)
+			getchar();
+			gets_s(phoneNumber, N);
+			while (phonenum_input_validity(phoneNumber)==1)
 				{
 				   printf("The phone number is incorrect\n");
 				   printf("Enter your phone number:\n");
-				   scanf("%ld", &phoneNumber);
+				   getchar();
+				   gets_s(phoneNumber, N);
 				   
 				}
 			printf("To update press '0' To not change press '1'\n");
-			scanf("%s", flag);
+			scanf("%d", flag);
 			if (flag == 0)
 			{
 				c->phoneNumber = phoneNumber;
@@ -191,7 +197,7 @@ void menu_edit_c_profile(Candidate* c)
 			{
 				break;
 			}
-		case 5:workexperience
+		case 5:
 			printf("Enter your work experience:\n");
 			getchar();
 			gets_s(workexperience, M);
