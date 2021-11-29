@@ -26,17 +26,17 @@ flag companyname_input_validity(char companyname[]); //adi ?? if not so tair
 
 flag company_description_input_validity(char description[]); //adi ?? if not so tair
 
-flag jobname_input_validity(char jobname[]); //tair need to do this
+flag jobname_input_validity(char jobname[]); //tair need to do this V
 
 flag job_description_input_validity(char description[]); //adi - if not so tair
 
 flag job_requirement_input_validity(char requirement[]); //adi - someone need to copy paste if not so tair
 
-void user_main_menu() //tair
+void user_main_menu() //tair v
 
-void new_user_menu()//tair
+void new_user_menu()//tair v
 
-void exist_user_menu()//tair
+void exist_user_menu()//tair v
 
 void main_candidate_menu(); //תפריט דף הבית מועמד //reut  V
 
