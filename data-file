@@ -15,6 +15,7 @@ typedef enum { FALSE = 0, TRUE = 1 }Bool;
 //typedef struct {
 //	int day, month, year;
 //}Date;
+
 typedef struct {
 	char id[SIZE2];
 	char password[SIZE2];
