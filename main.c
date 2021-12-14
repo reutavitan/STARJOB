@@ -37,7 +37,7 @@ typedef struct {
 typedef enum { Fulltime = 1, Parttime = 2, Temporaryjob = 3, Motherjob = 4 }Scope;
 typedef enum { North = 1, South = 2, Central = 3, Jerusalem = 4 }Area;
 typedef enum { Sales = 1, AccountingAndFinance = 2, Logistics = 3, EducationandTraining = 4, HiTech = 5, Securing = 6, Restaurants = 7 }Profession;
-typedef enum { With_experience = 1, Without_experience = 2}Experience; //היה חסר אז הוספתי-שיראל
+typedef enum { With_experience = 1, Without_experience = 2 }Experience; //היה חסר אז הוספתי-שיראל
 typedef struct {
 	char id[SIZE];
 	char companyName[SIZE];
@@ -117,11 +117,56 @@ int readFileCandidate(Candidate** candidate, int size)
 
 }
 int main() {
-	Employer** employer = (Employer**)malloc(50 * sizeof(Employer*));
-	Candidate** candidate = (Candidate**)malloc(100 * sizeof(Candidate*));
-	Candidate** candidate = (Candidate**)malloc(100 * sizeof(Candidate*));
+	Employer** employer = (Employer**)malloc(2 * sizeof(Employer*));
+	Candidate** candidate = (Candidate**)malloc(2 * sizeof(Candidate*));
+	int i;
 
-	 
+	for (i = 0; i < 2; i++)
+	{
+		puts("enter all datils\n");
+		employer[i] = (Employer*)malloc(1 * sizeof(Employer));
+		if (!employer[i])
+			return 0;
+		gets(employer[i]->id);
+		gets(employer[i]->password);
+		gets(employer[i]->fullName);
+		gets(employer[i]->phoneNumber);
+		gets(employer[i]->companyName);
+		gets(employer[i]->description);
+		gets(employer[i]->gender);
+	}
+
+
+
+	for (i = 0; i < 2; i++)
+	{
+		puts("enter all datils\n");
+		candidate[i] = (Candidate*)malloc(1 * sizeof(Candidate));
+		if (!candidate[i])
+			return 0;
+		gets(candidate[i]->id);
+		gets(candidate[i]->password);
+		gets(candidate[i]->fullName);
+		gets(candidate[i]->phoneNumber);
+		gets(candidate[i]->education);
+		gets(candidate[i]->workExperience);
+		gets(candidate[i]->gender);
+		gets(candidate[i]->CV);
+		/*x = scanf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n", candidate[i]->id, candidate[i]->fullName, candidate[i]->password, candidate[i]->phoneNumber, candidate[i]->education, candidate[i]->workExperience, candidate[i]->CV);*/
+
+	}
+	writeFileEmployer(employer, 2);
+	readFileEmployer(employer, 2);
+	writeFileCandidate(candidate, 2);
+	readFileCandidate(candidate, 2);
+
+	/*FILE* fp = fopen("arr.txt", "w");
+	for (i = 0; i < 2; i++)
+		fprintf(fp, "%s %d %f\n", arr[i]->name, arr[i]->age, arr[i]->price);
+	fclose(fp);*/
+	/*readFileEmployer(employer, 2);*/
+
 	return 0;
 
 }
+ 

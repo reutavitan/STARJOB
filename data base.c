@@ -53,4 +53,42 @@ int main() {
 	Bool fillDefaultCandidateDataBase(Candidate * *candidateDataBase); {
 
 	};
+	for (i = 0; i < 2; i++)
+	{
+		puts("enter all datils\n");
+		employer[i] = (Employer*)malloc(1 * sizeof(Employer));
+		if (!employer[i])
+			return 0;
+		gets(employer[i]->id);
+		gets(employer[i]->password);
+		gets(employer[i]->fullName);
+		gets(employer[i]->phoneNumber);
+		gets(employer[i]->companyName);
+		gets(employer[i]->description);
+		gets(employer[i]->gender);
+	}
+
+
+
+	for (i = 0; i < 2; i++)
+	{
+		puts("enter all datils\n");
+		candidate[i] = (Candidate*)malloc(1 * sizeof(Candidate));
+		if (!candidate[i])
+			return 0;
+		gets(candidate[i]->id);
+		gets(candidate[i]->password);
+		gets(candidate[i]->fullName);
+		gets(candidate[i]->phoneNumber);
+		gets(candidate[i]->education);
+		gets(candidate[i]->workExperience);
+		gets(candidate[i]->gender);
+		gets(candidate[i]->CV);
+		/*x = scanf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n", candidate[i]->id, candidate[i]->fullName, candidate[i]->password, candidate[i]->phoneNumber, candidate[i]->education, candidate[i]->workExperience, candidate[i]->CV);*/
+
+	}
+	writeFileEmployer(employer, 2);
+	readFileEmployer(employer, 2);
+	writeFileCandidate(candidate, 2);
+	readFileCandidate(candidate, 2);
 };

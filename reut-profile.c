@@ -230,4 +230,18 @@ void menu_edit_c_profile(Candidate* c)
 
 
 	} while (choice != 6);
+	void viewing_candidate_profile(char* id)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			int x =strcmp(id, candidate[i].id)
+			if (x == 0)
+			{
+				printf("%s\n%s\n%s\n%s\n%s\n%s\n", candidate[i]->name, candidate[i]->id, candidate[i]->phoneNumber,/* candidate->email,*/ candidate[i]->education, candidate[i]->workexperience)
+					break;
+			}
+		}
+	}
+
+
 }
